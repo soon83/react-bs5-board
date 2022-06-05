@@ -55,41 +55,27 @@ const Signup = () => {
           <h1>SIGN UP</h1>
 
           <Form onSubmit={onSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label for="user-id">아이디</Form.Label>
-              <Form.Control id="user-id" type="text" placeholder="아이디를 입력하세요." value={userId} required onChange={onChangeUserId} />
+            <Form.Group className="mb-3" controlId="formBasicUserId">
+              <Form.Label>아이디</Form.Label>
+              <Form.Control type="text" placeholder="아이디를 입력하세요." value={userId} required onChange={onChangeUserId} />
               <Form.Text className="text-muted">6자리 이상의 영문자와 숫자만 가능합니다.</Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label for="user-name">이름</Form.Label>
-              <Form.Control id="user-name" type="text" placeholder="이름을 입력하세요." value={userName} required onChange={onChangeUserName} />
+            <Form.Group className="mb-3" controlId="formBasicUserName">
+              <Form.Label>이름</Form.Label>
+              <Form.Control type="text" placeholder="이름을 입력하세요." value={userName} required onChange={onChangeUserName} />
               <Form.Text className="text-muted">똑바로 쓰세요 까불지말고.</Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label for="user-password">비밀번호</Form.Label>
-              <Form.Control
-                id="user-password"
-                type="password"
-                placeholder="비밀번호를 입력하세요."
-                value={userPassword}
-                required
-                onChange={onChangeUserPassword}
-              />
+            <Form.Group className="mb-3" controlId="formBasicUserPassword">
+              <Form.Label>비밀번호</Form.Label>
+              <Form.Control type="password" placeholder="비밀번호를 입력하세요." value={userPassword} required onChange={onChangeUserPassword} />
               <Form.Text className="text-muted">6자리 이상의 영문자, 숫자, 특수문자의 조합만 가능합니다.</Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label for="user-password-check">비밀번호 확인</Form.Label>
-              <Form.Control
-                id="user-password-check"
-                type="password"
-                placeholder="비밀번호를 입력하세요."
-                value={userPasswordCheck}
-                required
-                onChange={onChangeUserPasswordCheck}
-              />
+            <Form.Group className="mb-3" controlId="formBasicUserPasswordCheck">
+              <Form.Label>비밀번호 확인</Form.Label>
+              <Form.Control type="password" placeholder="비밀번호를 입력하세요." value={userPasswordCheck} required onChange={onChangeUserPasswordCheck} />
               {userPasswordError && <Form.Text className="text-danger">비밀번호를 똑바로 쓰세요 까불지말고.</Form.Text>}
             </Form.Group>
 
