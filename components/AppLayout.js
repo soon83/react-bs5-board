@@ -1,14 +1,9 @@
 import React from 'react';
-import Head from 'next/head';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = ({ children }) => {
+const AppLayout = ({ children }) => {
   return (
     <>
-      <Head>
-        <title>순마켓</title>
-      </Head>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -40,4 +35,4 @@ const App = ({ children }) => {
   );
 };
 
-export default App;
+export default AppLayout;

@@ -11,5 +11,8 @@
     "browser": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "plugins": ["import", "react-hooks"]
+  "plugins": ["import", "react-hooks"],
+  "rules": {
+    "react/no-unescaped-entities": "off" // 문자열 내에서 다음의 특수문자 4가지 ", ', >, } 허용
+  }
 }
