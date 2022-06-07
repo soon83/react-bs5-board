@@ -14,26 +14,18 @@ const Signup = () => {
 
   // form
   const userIdInput = {
-    label: '아이디',
-    placeholder: '아이디를 입력하세요',
     regex: /^[a-zA-Z0-9]{5,}$/, // /[a-zA-Z]+[a-zA-Z0-9]{4,}$/; // 5자리 이상의 영문자로 시작하는 문자열 (영문자, 숫자만 가능)
     errorMessage: '5자리 이상의 영문자 또는 숫자를 포함한 문자열',
   };
   const userNameInput = {
-    label: '이름',
-    placeholder: '이름을 입력하세요',
     regex: /^.{1,}$/, // 최소 1자리 이상의 문자열
     errorMessage: '비어있을 수 없습니다',
   };
   const userPasswordInput = {
-    label: '비밀번호',
-    placeholder: '비밀번호를 입력하세요',
     regex: /^.{6,}$/, // 최소 6자리 이상의 문자열
     errorMessage: '6자리 이상의 문자열',
   };
   const userPasswordCheckInput = {
-    label: '비밀번호확인',
-    placeholder: '비밀번호를 한번 더 입력하세요',
     regex: /^.{1,}$/, // 최소 1자리 이상의 문자열
     errorMessage: '',
   };
@@ -114,11 +106,11 @@ const Signup = () => {
 
           <Form.Group className="mb-3" controlId="formBasicUserName">
             <Form.Label>
-              {userNameInput.label} <span className="text-danger">*</span>
+              이름 <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
               type="text"
-              placeholder={userNameInput.placeholder}
+              placeholder="이름을 입력하세요"
               className={userNameError ? 'is-invalid' : ''}
               value={userName}
               onChange={onChangeUserName}
@@ -129,11 +121,11 @@ const Signup = () => {
 
           <Form.Group className="mb-3" controlId="formBasicUserPassword">
             <Form.Label>
-              {userPasswordInput.label} <span className="text-danger">*</span>
+              비밀번호 <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
               type="password"
-              placeholder={userPasswordInput.placeholder}
+              placeholder="비밀번호를 입력하세요"
               className={userPasswordError ? 'is-invalid' : ''}
               value={userPassword}
               onChange={onChangeUserPassword}
@@ -144,11 +136,11 @@ const Signup = () => {
 
           <Form.Group className="mb-3" controlId="formBasicUserPasswordCheck">
             <Form.Label>
-              {userPasswordCheckInput.label} <span className="text-danger">*</span>
+              비밀번호확인 <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
               type="password"
-              placeholder={userPasswordCheckInput.placeholder}
+              placeholder="비밀번호를 한번 더 입력하세요"
               className={userPasswordCheckError ? 'is-invalid' : ''}
               value={userPasswordCheck}
               onChange={onChangeUserPasswordCheck}

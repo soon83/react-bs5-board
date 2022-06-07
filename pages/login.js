@@ -1,38 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Container, Form, Button } from 'react-bootstrap';
 
+const log = console.log;
+
 const Login = () => {
+  // local state
+  const [userId, setUserId] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+
+  const onSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    log('onSubmit: ', {
+      userId,
+      userPassword,
+    });
+  };
+
+  // event
+  const onChangeUserId = (e) => {
+    setUserId(e.target.value);
+  };
+
+  const onChangeUserPassword = (e) => {
+    setUserPassword(e.target.value);
+  };
+
   return (
     <>
       <Container>
-        <h1>LOGIN</h1>
+        <h1 className="my-3">로그인</h1>
 
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
+        <Form noValidate onSubmit={onSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicUserId">
+            <Form.Label>아이디</Form.Label>
+            <Form.Control type="text" placeholder="아이디를 입력하세요" value={userId} onChange={onChangeUserId} required />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+          <Form.Group className="mb-3" controlId="formBasicUserPassword">
+            <Form.Label>비밀번호</Form.Label>
+            <Form.Control type="password" placeholder="비밀번호를 입력하세요" value={userPassword} onChange={onChangeUserPassword} required />
           </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-
           <Button variant="primary" type="submit">
-            Submit
+            로그인
           </Button>
         </Form>
-
-        <Link href="/">
-          <a>홈으로</a>
-        </Link>
       </Container>
+      <div className="text-center">
+        <Link href="/">
+          <a>Home</a>
+        </Link>
+      </div>
     </>
   );
 };
