@@ -44,10 +44,16 @@ const Signup = () => {
   const [userPasswordError, setUserPasswordError] = useState(false);
   const [userPasswordCheckError, setUserPasswordCheckError] = useState(false);
   const [memberTermsError, setMemberTermsError] = useState(false);
+  const [requiredError, setRequiredError] = useState(false);
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      return setRequiredError(true);
+    }
 
     log('onSubmit: ', {
       userId,
@@ -58,6 +64,7 @@ const Signup = () => {
     });
   };
 
+  // event
   const onChangeUserId = (e) => {
     setUserIdError(!userIdInput.regex.test(e.target.value));
     setUserId(e.target.value);
@@ -87,16 +94,16 @@ const Signup = () => {
   return (
     <>
       <Container>
-        <h1>SIGN UP</h1>
+        <h1 className="my-3">회원가입</h1>
 
         <Form noValidate onSubmit={onSubmit}>
           <Form.Group className="mb-3" controlId="formBasicUserId">
             <Form.Label>
-              {userIdInput.label} <span className="text-danger">*</span>
+              아이디 <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
               type="text"
-              placeholder={userIdInput.placeholder}
+              placeholder="아이디를 입력하세요"
               className={userIdError ? 'is-invalid' : ''}
               value={userId}
               onChange={onChangeUserId}
@@ -165,12 +172,14 @@ const Signup = () => {
           <Button variant="primary" type="submit">
             회원가입
           </Button>
+          <Form.Group className="mb-3">{requiredError && <Form.Text className="text-danger">필수 항목을 모두 입력해주세요</Form.Text>}</Form.Group>
         </Form>
-
-        <Link href="/">
-          <a>홈으로</a>
-        </Link>
       </Container>
+      <div className="text-center">
+        <Link href="/">
+          <a>Home</a>
+        </Link>
+      </div>
     </>
   );
 };
