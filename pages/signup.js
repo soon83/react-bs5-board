@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Spinner } from 'react-bootstrap';
 
 const log = console.log;
 
@@ -11,8 +11,9 @@ const Signup = () => {
   const [userPassword, setUserPassword] = useState('');
   const [userPasswordCheck, setUserPasswordCheck] = useState('');
   const [memberTerms, setMemberTerms] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  // form
+  // validation
   const userIdInput = {
     regex: /^[a-zA-Z0-9]{5,}$/, // /[a-zA-Z]+[a-zA-Z0-9]{4,}$/; // 5자리 이상의 영문자로 시작하는 문자열 (영문자, 숫자만 가능)
     errorMessage: '5자리 이상의 영문자 또는 숫자를 포함한 문자열',
@@ -30,7 +31,7 @@ const Signup = () => {
     errorMessage: '',
   };
 
-  // validation
+  // validation state
   const [userIdError, setUserIdError] = useState(false);
   const [userNameError, setUserNameError] = useState(false);
   const [userPasswordError, setUserPasswordError] = useState(false);
@@ -38,7 +39,11 @@ const Signup = () => {
   const [memberTermsError, setMemberTermsError] = useState(false);
   const [requiredError, setRequiredError] = useState(false);
 
+  // event
+  // TODO useCallback 사용하기
   const onSubmit = (e) => {
+    setLoading(true);
+
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
@@ -56,7 +61,6 @@ const Signup = () => {
     });
   };
 
-  // event
   const onChangeUserId = (e) => {
     setUserIdError(!userIdInput.regex.test(e.target.value));
     setUserId(e.target.value);
@@ -161,15 +165,18 @@ const Signup = () => {
             {memberTermsError && <Form.Text className="text-danger">똑바로 입력할 것을 동의하셔야 합니다</Form.Text>}
           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            회원가입
-          </Button>
-          <Form.Group className="mb-3">{requiredError && <Form.Text className="text-danger">필수 항목을 모두 입력해주세요</Form.Text>}</Form.Group>
+          <div className="d-grid">
+            <Button type="submit" variant="primary">
+              {loading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />}
+              회원가입
+            </Button>
+            <Form.Group>{requiredError && <Form.Text className="text-danger">필수 항목을 모두 입력해주세요</Form.Text>}</Form.Group>
+          </div>
         </Form>
       </Container>
-      <div className="text-center">
-        <Link href="/">
-          <a>Home</a>
+      <div className="text-center mt-3">
+        <Link href="/login">
+          <a>로그인</a>
         </Link>
       </div>
     </>

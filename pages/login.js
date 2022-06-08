@@ -46,14 +46,17 @@ const Login = () => {
             <Form.Label>비밀번호</Form.Label>
             <Form.Control type="password" placeholder="비밀번호를 입력하세요" value={userPassword} onChange={onChangeUserPassword} required />
           </Form.Group>
-          <Button variant="primary" type="submit">
-            로그인
-          </Button>
+
+          <div className="d-grid">
+            <Button type="submit" variant="primary">
+              로그인
+            </Button>
+          </div>
         </Form>
       </Container>
-      <div className="text-center">
-        <Link href="/">
-          <a>Home</a>
+      <div className="text-center mt-3">
+        <Link href="/signup">
+          <a>회원가입</a>
         </Link>
       </div>
     </>
