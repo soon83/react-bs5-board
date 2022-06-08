@@ -120,3 +120,9 @@ npm run dev
 ```
 npm i react-bootstrap bootstrap
 ```
+
+### prop-types 설치
+
+```
+npm i prop-types
+```

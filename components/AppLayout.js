@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 const AppLayout = ({ children }) => {
@@ -33,6 +34,10 @@ const AppLayout = ({ children }) => {
       {children}
     </>
   );
+};
+
+AppLayout.propTypes = {
+  children: PropTypes.node,
 };
 
 export default AppLayout;
