@@ -26,10 +26,6 @@ const Signup = () => {
     regex: /^.{6,}$/, // 최소 6자리 이상의 문자열
     errorMessage: '6자리 이상의 문자열',
   };
-  const userPasswordCheckInput = {
-    regex: /^.{1,}$/, // 최소 1자리 이상의 문자열
-    errorMessage: '',
-  };
 
   // validation state
   const [userIdError, setUserIdError] = useState(false);
@@ -37,20 +33,36 @@ const Signup = () => {
   const [userPasswordError, setUserPasswordError] = useState(false);
   const [userPasswordCheckError, setUserPasswordCheckError] = useState(false);
   const [memberTermsError, setMemberTermsError] = useState(false);
-  const [requiredError, setRequiredError] = useState(false);
+  const [doNotSubmit, setDoNotSubmit] = useState(false);
 
   // event
   // TODO useCallback 사용하기
   const onSubmit = (e) => {
-    setLoading(true);
+    e.preventDefault();
+    e.stopPropagation();
 
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      return setRequiredError(true);
+    // TODO 유효성검사 쉽게하는거 없나?
+    if (!(userId && userIdInput.regex.test(userId))) {
+      setUserIdError(true);
+      return setDoNotSubmit(true);
     }
+    if (!(userName && userNameInput.regex.test(userName))) {
+      setUserNameError(true);
+      return setDoNotSubmit(true);
+    }
+    if (!(userPassword && userPasswordInput.regex.test(userPassword))) {
+      setUserPasswordError(true);
+      return setDoNotSubmit(true);
+    }
+    if (userPassword !== userPasswordCheck) {
+      return setDoNotSubmit(true);
+    }
+
+    if (!memberTerms) {
+      return setMemberTermsError(true);
+    }
+
+    setLoading(true);
 
     log('onSubmit: ', {
       userId,
@@ -73,12 +85,12 @@ const Signup = () => {
 
   const onChangeUserPassword = (e) => {
     setUserPasswordError(!userPasswordInput.regex.test(e.target.value));
+    setUserPasswordCheckError(userPassword !== e.target.value);
     setUserPassword(e.target.value);
   };
 
   const onChangeUserPasswordCheck = (e) => {
-    setUserPasswordCheckError(!userPasswordCheckInput.regex.test(e.target.value));
-    setUserPasswordCheckError(e.target.value !== userPassword);
+    setUserPasswordCheckError(userPassword !== e.target.value);
     setUserPasswordCheck(e.target.value);
   };
 
@@ -170,7 +182,7 @@ const Signup = () => {
               {loading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />}
               회원가입
             </Button>
-            <Form.Group>{requiredError && <Form.Text className="text-danger">필수 항목을 모두 입력해주세요</Form.Text>}</Form.Group>
+            <Form.Group>{doNotSubmit && <Form.Text className="text-danger">필수 항목을 모두 입력해주세요</Form.Text>}</Form.Group>
           </div>
         </Form>
       </Container>
