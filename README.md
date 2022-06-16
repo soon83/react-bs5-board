@@ -123,6 +123,21 @@ npm i react-bootstrap bootstrap
 
 ### prop-types 설치
 
+참고 [PropTypes와 함께 하는 타입 검사](https://ko.reactjs.org/docs/typechecking-with-proptypes.html).
+
+- 컴포넌트의 props에 타입 검사를 하려면 다음과 같이 특별한 프로퍼티인 propTypes를 선언할 수 있음
+- 코드안정성 up
+
 ```
 npm i prop-types
+```
+
+### redux (상태관리 라이브러리) 설치
+
+- redux 는 왜쓰지? 걍 유지보수랑 디버깅하기 편해서
+- Action (어떤 이벤트를 정의) -> Dispatch (Action 을 실행) -> Reducer (state 를 변경)
+- ex) Action (로그인) -> Dispatch (로그인 실행) -> Reducer (서버의 응답을 받아 로그인 사용자 객체의 state 를 변경)
+
+```
+npm i redux react-redux
 ```
