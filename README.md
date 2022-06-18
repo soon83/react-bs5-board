@@ -153,7 +153,7 @@ npm i redux react-redux next-redux-wrapper
 ### redux-devtools 설치 및 사용
 
 ```
-npm i redux react-redux
+npm i redux-devtools-extension
 ```
 
 ```
@@ -171,6 +171,6 @@ export default createWrapper((initState, options) => {
 })(App);
 ```
 
-- enhancer 부분을 작성해서 코드에 넣어줘야 동작함
+- enhancer 부분을 작성해서 코드에 넣어줘야 동작함 (이거 안넣어서 삽질함)
 - chrome > Apps > Web Store > 검색어 redux 로 검색 > "Redux DevTools" 설치
 - 모든 Action 의 흐름이 다 보여서 개좋음
