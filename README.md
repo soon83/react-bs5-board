@@ -152,6 +152,8 @@ npm i redux react-redux next-redux-wrapper
 
 ### redux-devtools 설치 및 사용
 
+참고 [Next.js에서-Redux-사용해보기](https://ko.reactjs.org/docs/typechecking-with-proptypes.html).
+
 ```
 npm i redux-devtools-extension
 ```
