@@ -141,3 +141,7 @@ npm i prop-types
 ```
 npm i redux react-redux
 ```
+
+### react redux 연결
+
+- 이거 연결 왜 안되냐 개어렵네...

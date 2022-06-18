@@ -1,6 +1,6 @@
 const initState = {
-  member: {},
   isLoggedIn: false,
+  member: null,
 };
 
 const LOG_IN = 'LOG_IN'; // 로그인
@@ -39,7 +39,7 @@ const reducer = (state = initState, action) => {
     case LOG_OUT: {
       return {
         ...state,
-        member: action.data,
+        member: null,
         isLoggedIn: false,
       };
     }
@@ -54,3 +54,6 @@ const reducer = (state = initState, action) => {
       return state;
   }
 };
+
+export default reducer;
+export { initState, loginAction, logoutAction, signupAction };

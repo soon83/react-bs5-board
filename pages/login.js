@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Container, Form, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { signupAction, loginAction, logoutAction } from '../reducers/member';
 
 const log = console.log;
-
 const Login = () => {
   // local state
   const [userId, setUserId] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+    dispatch(signupAction);
+    dispatch(loginAction);
+    dispatch(logoutAction);
+
+    e.preventDefault();
+    e.stopPropagation();
 
     log('onSubmit: ', {
       userId,
