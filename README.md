@@ -134,7 +134,7 @@ npm i prop-types
 
 ### redux (상태관리 라이브러리) 설치
 
-- redux 는 왜쓰지? 걍 유지보수랑 디버깅하기 편해서
+- redux 는 왜쓰지? 유지보수랑 디버깅하기 편함
 - Action (어떤 이벤트를 정의) -> Dispatch (Action 을 실행) -> Reducer (state 를 변경)
 - ex) Action (로그인) -> Dispatch (로그인 실행) -> Reducer (서버의 응답을 받아 로그인 사용자 객체의 state 를 변경)
 
@@ -145,3 +145,32 @@ npm i redux react-redux
 ### react redux 연결
 
 - 이거 연결 왜 안되냐 개어렵네...
+
+```
+npm i redux react-redux next-redux-wrapper
+```
+
+### redux-devtools 설치 및 사용
+
+```
+npm i redux react-redux
+```
+
+```
+# _app.js
+
+export default createWrapper((initState, options) => {
+  log({
+    initState,
+    options,
+  });
+  const middlewares = [];
+  const enhancer = process.env.NODE_ENV === 'production' ? compose(applyMiddleware(...middlewares)) : composeWithDevTools(applyMiddleware(...middlewares));
+  const store = legacy_createStore(reducer, initState, enhancer);
+  return store;
+})(App);
+```
+
+- enhancer 부분을 작성해서 코드에 넣어줘야 동작함
+- chrome > Apps > Web Store > 검색어 redux 로 검색 > "Redux DevTools" 설치
+- 모든 Action 의 흐름이 다 보여서 개좋음
