@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Container, Form, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signupAction, loginAction, logoutAction } from '../reducers/member';
 
 const log = console.log;
 const Login = () => {
+  const dispatch = useDispatch();
+  const { member, isLoggedIn } = useSelector((state) => state.member);
+
   // local state
   const [userId, setUserId] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     dispatch(signupAction);
     dispatch(loginAction);
-    dispatch(logoutAction);
+    //dispatch(logoutAction);
 
     e.preventDefault();
     e.stopPropagation();
@@ -62,6 +64,7 @@ const Login = () => {
           <a>회원가입</a>
         </Link>
       </div>
+      <div className="text-center mt-3">{isLoggedIn ? `'${member.loginId}' 님이 로그인 함` : ''}</div>
     </>
   );
 };

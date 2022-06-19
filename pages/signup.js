@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { Container, Form, Button, Spinner } from 'react-bootstrap';
+import { signupAction } from '../reducers/member';
 
 const log = console.log;
-
 const Signup = () => {
+  const dispatch = useDispatch();
+  const { member } = useSelector((state) => state.member);
+
   // local state
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
@@ -71,6 +75,10 @@ const Signup = () => {
       userPasswordCheck,
       memberTerms,
     });
+
+    dispatch(signupAction);
+
+    setLoading(false);
   };
 
   const onChangeUserId = (e) => {
@@ -191,6 +199,7 @@ const Signup = () => {
           <a>로그인</a>
         </Link>
       </div>
+      <div className="text-center mt-3">memberName: {member.memberName}</div>
     </>
   );
 };

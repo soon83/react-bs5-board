@@ -1,11 +1,11 @@
 const initState = {
   isLoggedIn: false,
-  member: null,
+  member: {},
 };
 
-const LOG_IN = 'LOG_IN'; // 로그인
-const LOG_OUT = 'LOG_OUT'; // 로그아웃
-const SIGN_UP = 'SIGN_UP'; // 회원가입
+const LOG_IN = '로그인';
+const LOG_OUT = '로그아웃';
+const SIGN_UP = '회원가입';
 
 const loginAction = {
   type: LOG_IN,
@@ -39,7 +39,7 @@ const reducer = (state = initState, action) => {
     case LOG_OUT: {
       return {
         ...state,
-        member: null,
+        member: {},
         isLoggedIn: false,
       };
     }
