@@ -147,7 +147,7 @@ npm i redux react-redux
 - 이거 연결 왜 안되냐 개어렵네...
 
 ```
-npm i redux react-redux next-redux-wrapper
+npm i next-redux-wrapper
 ```
 
 ### redux-devtools 설치 및 사용
